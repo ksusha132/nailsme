@@ -1,4 +1,5 @@
 package com.nails.nastya.nailsme.mapper;
 
-public interface WindowMapper {
+
+public interface TimeSlotMapper {
 }

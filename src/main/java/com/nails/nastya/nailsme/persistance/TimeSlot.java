@@ -1,37 +1,29 @@
 package com.nails.nastya.nailsme.persistance;
 
+import com.nails.nastya.nailsme.enumeration.TimeSlotState;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
-import java.util.LinkedList;
-import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "Schedule")
+@Entity(name = "time_slot")
 @Builder
-public class Schedule {
+public class TimeSlot {
     @Getter
     @Setter
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
     private Integer id;
 
-    @Column(name = "master_Id", nullable = false)
-    private Integer masterId;
-
-    @ElementCollection
-    private List<Integer> bookedSlots;
-
     @Column(name = "work_from", nullable = false)
     private Instant workFrom;
 
     @Column(name = "work_to", nullable = false)
     private Instant workTo;
-
-    @Column(name = "step_in_hour", nullable = false)
-    private Integer stepInHour;
+    @Enumerated(EnumType.STRING)
+    private TimeSlotState timeSlotState;
 }

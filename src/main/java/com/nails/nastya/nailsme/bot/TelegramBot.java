@@ -39,35 +39,54 @@ public class TelegramBot extends TelegramLongPollingBot {
             Message message = update.getMessage();
             if (message != null && message.hasText()) {
                 switch (messageText) {
-                    case "/start":
+                    case "/start" -> {
                         startCommandReceived(chatId, update.getMessage().getChat().getFirstName());
                         sendMsg(message, "Это команда старт!");
                         System.out.println(message.getText());
-                        break;
-                    case "Команда 1":
-                        sendMsg(message, "Запись");
-                        System.out.println(message.getText());
-                        break;
-                    case "Команда 2":
+                    }
+                    case "Запись" -> {
+                        sendMasterChoose(message, "Выберите мастера: ");
+                    }
+                    case "Анастасия" -> {
+                        sendPrice(message);
+                        sendText(message, "Выберите услугу из прайс листа выше, пожалуйста" +
+                                " введите номер, например 1");
+                    }
+                    case "1" -> {
+                        sendWindowChoose(message, "Выберите окошко для записи Анастасии: ");
+                        // get from db already taken windows
+                        // get difference
+                        // get string windows with id
+                    }
+                    case "сегодня" -> {
+                        sendTimeTable(message);
+                        // get from db already taken windows
+                        // get difference
+                        // get string windows with id
+                    }
+                    case "Отмена" -> {
                         sendMsg(message, "Отмена записи");
                         System.out.println(message.getText());
-                        break;
-                    case "Команда 3":
+                    }
+                    case "Перенос" -> {
                         sendMsg(message, "Перенос записи");
                         System.out.println(message.getText());
-                        break;
-                    case "Команда 4":
+                    }
+                    case "Контакты" -> {
                         sendMsg(message, "Получить контакты мастера");
                         System.out.println(message.getText());
-                        break;
-                    case "Команда 5":
+                    }
+                    case "Флуд" -> {
                         sendMsg(message, "Побалтать с ботом PS - спроси чат GPT про маникюр");
                         System.out.println(message.getText());
-                        break;
-                    default:
+                    }
+                    default -> {
+                        // try to find id time slot by id if not - send default message
+
+                        // запись Анастасия маникюр(ид услуги) 10.09.2021 10:00-12:00 (ид таймслота)
                         sendMsg(message, "Это дефолт! Брейк!");
                         System.out.println(message.getText());
-                        break;
+                    }
                 }
             }
         }
@@ -134,6 +153,114 @@ public class TelegramBot extends TelegramLongPollingBot {
                 "Когда Вы записываетесь, пожалуйста, указываете услуги которые Выхотите получить." + "\n" +
                 "Например: маникюр с покрытием. Маникюр и педикюр, тоже самое с дизайном." + "\n";
         sendMessage(chatId, answer);
+    }
+
+    public void sendText(Message message, String text) {
+        sendMessage(message.getChatId(), text);
+    }
+
+    public void sendMasterChoose(Message message, String text) {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.enableMarkdown(true);
+
+        // Создаем клавиатуру
+        ReplyKeyboardMarkup replyKeyboardMarkup = new
+                ReplyKeyboardMarkup();
+        sendMessage.setReplyMarkup(replyKeyboardMarkup);
+        replyKeyboardMarkup.setSelective(true);
+        replyKeyboardMarkup.setResizeKeyboard(true);
+        replyKeyboardMarkup.setOneTimeKeyboard(false);
+
+        // Создаем список строк клавиатуры
+        List<KeyboardRow> keyboard = new ArrayList<>();
+
+        // Первая строчка клавиатуры
+        KeyboardRow keyboardFirstRow = new KeyboardRow();
+        // Добавляем кнопки в первую строчку клавиатуры
+        keyboardFirstRow.add("Анастасия");
+        keyboardFirstRow.add("Наталья");
+
+        // Добавляем все строчки клавиатуры в список
+        keyboard.add(keyboardFirstRow);
+        // и устанавливаем этот список нашей клавиатуре
+        replyKeyboardMarkup.setKeyboard(keyboard);
+
+        sendMessage.setChatId(message.getChatId().toString());
+        sendMessage.setReplyToMessageId(message.getMessageId());
+        sendMessage.setText(text);
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendPrice(Message message) {
+        SendMessage sendMessage = new SendMessage();
+        String text = "Маникюр - 2200 -  Номер 1" + "\n"
+                + "Педикюр - 3300 Номер 2" + "\n"
+                + "Что-то еще 1000 Номер 3";
+        sendMessage.setText(text);
+        sendMessage.setChatId(message.getChatId().toString());
+        sendMessage.setReplyToMessageId(message.getMessageId());
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendTimeTable(Message message) {
+        SendMessage sendMessage = new SendMessage();
+        String text = "10 00 - 12 00 Номер 11" + "\n"
+                + "12 00 - 14 00 Номер 13" + "\n"
+                + "14 00 - 16 00 Номер 13";
+        sendMessage.setText(text);
+        sendMessage.setChatId(message.getChatId().toString());
+        sendMessage.setReplyToMessageId(message.getMessageId());
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendWindowChoose(Message message, String text) {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.enableMarkdown(true);
+
+        // Создаем клавиатуру
+        ReplyKeyboardMarkup replyKeyboardMarkup = new
+                ReplyKeyboardMarkup();
+        sendMessage.setReplyMarkup(replyKeyboardMarkup);
+        replyKeyboardMarkup.setSelective(true);
+        replyKeyboardMarkup.setResizeKeyboard(true);
+        replyKeyboardMarkup.setOneTimeKeyboard(false);
+
+        // Создаем список строк клавиатуры
+        List<KeyboardRow> keyboard = new ArrayList<>();
+
+        // Первая строчка клавиатуры
+        KeyboardRow keyboardFirstRow = new KeyboardRow();
+        // Добавляем кнопки в первую строчку клавиатуры
+        keyboardFirstRow.add("Сегодня");
+        keyboardFirstRow.add("Завтра");
+        keyboardFirstRow.add("Неделя");
+        keyboardFirstRow.add("Месяц");
+
+        // Добавляем все строчки клавиатуры в список
+        keyboard.add(keyboardFirstRow);
+        // и устанавливаем этот список нашей клавиатуре
+        replyKeyboardMarkup.setKeyboard(keyboard);
+
+        sendMessage.setChatId(message.getChatId().toString());
+        sendMessage.setReplyToMessageId(message.getMessageId());
+        sendMessage.setText(text);
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
     }
 
     private void sendMessage(Long chatId, String textToSend) {

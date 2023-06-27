@@ -19,9 +19,13 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
     private Integer id;
+    @Column(name = "name", nullable = false)
     private String name;
+    @Column(name = "telegram_nick", nullable = false)
     private String telegramNick;
+    @Column(name = "phone", nullable = false)
     private String phone; // 79117714269
+    @Column(name = "date_birth", nullable = false)
     private Instant dateBirth;
     @Enumerated(EnumType.STRING)
     private ClientStatus status;

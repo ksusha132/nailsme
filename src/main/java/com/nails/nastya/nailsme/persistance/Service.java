@@ -1,5 +1,6 @@
 package com.nails.nastya.nailsme.persistance;
 
+import com.nails.nastya.nailsme.enumeration.SpecialityKind;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,9 +20,11 @@ public class Service {
     @Id
     private Integer id;
 
-    private String name; // enum
-
+    @Enumerated(EnumType.STRING)
+    private SpecialityKind serviceName;
+    @Column(name = "master_id", nullable = false)
     private Integer masterId;
 
+    @Column(name = "price", nullable = false)
     private BigDecimal price;
 }

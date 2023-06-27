@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_USER: nailsme
+      POSTGRES_PASSWORD: nailsme
+      POSTGRES_DB: nailsme
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/nailsme
+      SPRING_DATASOURCE_USERNAME: nailsme
+      SPRING_DATASOURCE_PASSWORD: nailsme
+
+volumes:
+  postgres-data:

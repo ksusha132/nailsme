@@ -17,7 +17,9 @@ public class Master {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
     private Integer id;
+    @Column(name = "contact_Id", nullable = false)
     private Integer contactId;
+    @Column(name = "name", nullable = false)
     private String name;
     @ElementCollection
     private List<String> specialities;
