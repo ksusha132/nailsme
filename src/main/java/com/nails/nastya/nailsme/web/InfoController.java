@@ -27,14 +27,14 @@ public class InfoController {
     }
 
     @Operation(summary = "Адрес студии мастера")
-    @GetMapping("/contacts/address")
+    @GetMapping("/address")
     public AddressResponse getMasterAddress() {
         return null;
     }
 
     @Operation(summary = "Услуги мастера")
-    @GetMapping("/contacts/{masterId}")
-    public MasterServiceResponse getMasterService(@PathVariable Long masterId) {
+    @GetMapping("/service/{masterId}")
+    public MasterServiceResponse getMasterService(@PathVariable Integer masterId) {
         return null;
     }
 }
