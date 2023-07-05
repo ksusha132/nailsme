@@ -8,6 +8,6 @@ public class AppointmentRequest {
     private final Long phoneNumber;
     private final String telegrammNick;
     private final Integer masterId;
-    private Integer serviceId; // what
-    private Integer windowId; // when
+    private Integer serviceId;
+    private Integer windowId;
 }

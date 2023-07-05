@@ -21,15 +21,27 @@ public class AppointmentController {
 
 
     @Operation(summary = "Создание встречи")
-    @PatchMapping("/")
-    public AppointmentResponse update(@RequestBody AppointmentRequest appointmentRequest) {
+    @PostMapping("/")
+    public AppointmentResponse createAppointment(@RequestBody AppointmentRequest appointmentRequest) {
         return appointmentFacade.createAnAppointment(appointmentRequest);
     }
 
-    // create
-    // update
-    // delete
-    // get
-    // get all
 
+    @Operation(summary = "Обновление встречи")
+    @PutMapping("/")
+    public AppointmentResponse updateAppointment(@RequestBody AppointmentRequest appointmentRequest) {
+        return null;
+    }
+
+    @Operation(summary = "Удаление встречи")
+    @DeleteMapping("/{appointmentId}")
+    public AppointmentResponse deleteAppointment(@PathVariable Integer appointmentId) {
+        return null;
+    }
+
+    @Operation(summary = "Получение встреч")
+    @GetMapping("/{login}")
+    public AppointmentResponse getAppointment(@PathVariable String login) {
+        return null;
+    }
 }

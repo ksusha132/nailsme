@@ -2,6 +2,7 @@ package com.nails.nastya.nailsme.web;
 
 import com.nails.nastya.nailsme.NailsmeApplication;
 import com.nails.nastya.nailsme.facade.TimeSlotFacade;
+import com.nails.nastya.nailsme.web.response.AdminTimeSlotResponse;
 import com.nails.nastya.nailsme.web.response.TimeSlotResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,14 +30,20 @@ public class TimeSlotController {
         this.timeSlotFacade = timeSlotFacade;
     }
 
-    @Operation(summary = "Получение всех окошек в за период")
+    @Operation(summary = "Получение всех доступных окошек за период")
     @GetMapping("/available")
-    public TimeSlotResponse getAllWindows(@PathVariable Long masterId,
-                                          @PathVariable Instant from,
-                                          @PathVariable Instant to) {
+    public TimeSlotResponse getAllAvailableWindows(@PathVariable Long masterId,
+                                                   @PathVariable Instant from,
+                                                   @PathVariable Instant to) {
         return timeSlotFacade.getAllAvailableTimeslots(masterId, from, to);
     }
 
 
-    // admin get all timetable
+    @Operation(summary = "Получение всех окошек за период")
+    @GetMapping("/all")
+    public AdminTimeSlotResponse getAllWindows(@PathVariable Long masterId,
+                                               @PathVariable Instant from,
+                                               @PathVariable Instant to) {
+        return timeSlotFacade.getAllTimeSlots(masterId, from, to);
+    }
 }

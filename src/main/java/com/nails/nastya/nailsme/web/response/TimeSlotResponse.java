@@ -7,7 +7,5 @@ import java.util.List;
 
 @Data
 public class TimeSlotResponse {
-
-    private String masterName;
     private List<TimeSlotDto> windowDtoList;
 }

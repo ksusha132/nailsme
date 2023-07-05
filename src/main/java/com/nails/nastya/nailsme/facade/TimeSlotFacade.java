@@ -1,6 +1,7 @@
 package com.nails.nastya.nailsme.facade;
 
 import com.nails.nastya.nailsme.service.TimeSlotService;
+import com.nails.nastya.nailsme.web.response.AdminTimeSlotResponse;
 import com.nails.nastya.nailsme.web.response.TimeSlotResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -24,7 +25,9 @@ public class TimeSlotFacade {
         return null;
     }
 
-    public TimeSlotResponse getAllTimeSlots() {
+    public AdminTimeSlotResponse getAllTimeSlots(Long masterId,
+                                                 Instant from,
+                                                 Instant to) {
 
         return null;
     }

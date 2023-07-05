@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class AppointmentResponse {
-    private Integer id;
-    private AppointmentStatus status;
+    private final Integer id;
+    private final AppointmentStatus status;
 }
