@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping(NailsmeApplication.VERSION_URL + "/appointment")
@@ -30,18 +32,18 @@ public class AppointmentController {
     @Operation(summary = "Обновление встречи")
     @PutMapping("/")
     public AppointmentResponse updateAppointment(@RequestBody AppointmentRequest appointmentRequest) {
-        return null;
+        return appointmentFacade.updateAnAppointment(appointmentRequest);
     }
 
     @Operation(summary = "Удаление встречи")
     @DeleteMapping("/{appointmentId}")
-    public AppointmentResponse deleteAppointment(@PathVariable Integer appointmentId) {
-        return null;
+    public void deleteAppointment(@PathVariable Integer appointmentId) {
+        appointmentFacade.deleteAnAppointment(appointmentId);
     }
 
     @Operation(summary = "Получение встреч")
     @GetMapping("/{login}")
     public AppointmentResponse getAppointment(@PathVariable String login) {
-        return null;
+        return appointmentFacade.getAnAppointmentsByLogin(login);
     }
 }

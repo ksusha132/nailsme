@@ -21,6 +21,7 @@ public class TimeSlotFacade {
     public TimeSlotResponse getAllAvailableTimeslots(Long masterId,
                                                      Instant from,
                                                      Instant to) {
+        timeSlotService.getAllAvailableTimeSlots(masterId, from, to);
 
         return null;
     }
@@ -28,7 +29,7 @@ public class TimeSlotFacade {
     public AdminTimeSlotResponse getAllTimeSlots(Long masterId,
                                                  Instant from,
                                                  Instant to) {
-
+        timeSlotService.getAllTimeSlots(masterId, from, to);
         return null;
     }
 }

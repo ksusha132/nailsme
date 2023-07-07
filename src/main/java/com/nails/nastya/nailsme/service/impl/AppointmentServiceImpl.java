@@ -5,6 +5,8 @@ import com.nails.nastya.nailsme.service.AppointmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
@@ -14,12 +16,17 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public void editAnAppointment() {
+    public AppointmentDto updateAnAppointment(AppointmentDto appointmentDto) {
+        return null;
+    }
+
+    @Override
+    public void deleteAnAppointment(Integer appointmentId) {
 
     }
 
     @Override
-    public void deleteAnAppointment() {
-
+    public List<AppointmentDto> getAppointmentsByLogin(String login) {
+        return null;
     }
 }

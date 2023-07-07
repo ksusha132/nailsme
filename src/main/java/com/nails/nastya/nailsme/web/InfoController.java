@@ -23,18 +23,18 @@ public class InfoController {
     @Operation(summary = "Контакты мастера")
     @GetMapping("/contacts/{masterId}")
     public MasterContactsResponse getMasterContacts(@PathVariable Long masterId) {
-        return null;
+        return infoFacade.getMasterContacts(masterId);
     }
 
     @Operation(summary = "Адрес студии мастера")
     @GetMapping("/address")
     public AddressResponse getMasterAddress() {
-        return null;
+        return infoFacade.getMasterAddress();
     }
 
     @Operation(summary = "Услуги мастера")
     @GetMapping("/service/{masterId}")
     public MasterServiceResponse getMasterService(@PathVariable Integer masterId) {
-        return null;
+        return infoFacade.getMasterService(masterId);
     }
 }
