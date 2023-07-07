@@ -5,7 +5,7 @@ import com.nails.nastya.nailsme.facade.ClientFacade;
 import com.nails.nastya.nailsme.web.request.LoginRequest;
 import com.nails.nastya.nailsme.web.request.RegisterClientRequest;
 import com.nails.nastya.nailsme.web.request.ResetPasswordRequest;
-import com.nails.nastya.nailsme.web.response.MasterServiceResponse;
+import com.nails.nastya.nailsme.web.response.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -24,25 +24,25 @@ public class ClientController {
 
     @Operation(summary = "Регистрация клиента")
     @PostMapping("/register")
-    public MasterServiceResponse registerNewClient(@RequestBody RegisterClientRequest registerClientRequest) {
-        return null;
+    public RegisterNewClientResponse registerNewClient(@RequestBody RegisterClientRequest registerClientRequest) {
+        return clientFacade.registerNewClient(registerClientRequest);
     }
 
     @Operation(summary = "Подтверждение регистрации клиента")
     @PostMapping("/confirm/{token}")
-    public MasterServiceResponse confirmNewClient(@PathVariable String token) {
-        return null;
+    public ConfirmNewClientResponse confirmNewClient(@PathVariable String token) {
+        return clientFacade.confirmNewClient(token);
     }
 
     @Operation(summary = "Логин клиента")
     @PostMapping("/login")
-    public MasterServiceResponse login(@RequestBody LoginRequest loginRequest) {
-        return null;
+    public LoginResponse login(@RequestBody LoginRequest loginRequest) {
+        return clientFacade.login(loginRequest);
     }
 
     @Operation(summary = "Подтверждение регистрации клиента")
     @PostMapping("/reset")
-    public MasterServiceResponse resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest) {
-        return null;
+    public ResetPasswordResponse resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest) {
+        return clientFacade.resetPassword(resetPasswordRequest);
     }
 }

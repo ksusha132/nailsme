@@ -1,10 +1,11 @@
 package com.nails.nastya.nailsme.web.response;
 
-import com.nails.nastya.nailsme.enumeration.AppointmentStatus;
+import com.nails.nastya.nailsme.dto.AppointmentDto;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class AppointmentResponse {
-    private final Integer id;
-    private final AppointmentStatus status;
+    List<AppointmentDto> appointmentDto;
 }
