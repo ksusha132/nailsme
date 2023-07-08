@@ -47,3 +47,6 @@ public class TimeSlotController {
         return timeSlotFacade.getAllTimeSlots(masterId, from, to);
     }
 }
+
+
+// TODO: 07.07.2023 1. DB 2.mappers mupstruct 3.repositories 4.exception handler 5.security 6.csrf
