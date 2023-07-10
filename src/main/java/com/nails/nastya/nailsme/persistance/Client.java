@@ -3,7 +3,6 @@ package com.nails.nastya.nailsme.persistance;
 import com.nails.nastya.nailsme.enumeration.ClientStatus;
 import jakarta.persistence.*;
 import lombok.*;
-import org.aspectj.asm.IProgramElement;
 
 import java.time.Instant;
 

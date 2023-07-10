@@ -2,6 +2,7 @@ package com.nails.nastya.nailsme.persistance;
 
 import com.nails.nastya.nailsme.enumeration.AppointmentStatus;
 import jakarta.persistence.*;
+
 import lombok.*;
 
 import java.time.Instant;

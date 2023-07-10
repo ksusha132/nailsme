@@ -2,7 +2,6 @@ package com.nails.nastya.nailsme.web;
 
 import com.nails.nastya.nailsme.NailsmeApplication;
 import com.nails.nastya.nailsme.facade.TimeSlotFacade;
-import com.nails.nastya.nailsme.web.response.AdminTimeSlotResponse;
 import com.nails.nastya.nailsme.web.response.TimeSlotResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -15,10 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
+import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping(NailsmeApplication.VERSION_URL + "/window")
+@RequestMapping(NailsmeApplication.VERSION_URL + "/time-slot")
 @RequiredArgsConstructor
 @Tag(name = "Окошки", description = "Работа со окнами")
 public class TimeSlotController {
@@ -32,21 +32,9 @@ public class TimeSlotController {
 
     @Operation(summary = "Получение всех доступных окошек за период")
     @GetMapping("/available")
-    public TimeSlotResponse getAllAvailableWindows(@PathVariable Long masterId,
-                                                   @PathVariable Instant from,
-                                                   @PathVariable Instant to) {
+    public List<TimeSlotResponse> getAllAvailableWindows(@PathVariable Integer masterId,
+                                                         @PathVariable Instant from,
+                                                         @PathVariable Instant to) {
         return timeSlotFacade.getAllAvailableTimeslots(masterId, from, to);
     }
-
-
-    @Operation(summary = "Получение всех окошек за период")
-    @GetMapping("/all")
-    public AdminTimeSlotResponse getAllWindows(@PathVariable Long masterId,
-                                               @PathVariable Instant from,
-                                               @PathVariable Instant to) {
-        return timeSlotFacade.getAllTimeSlots(masterId, from, to);
-    }
 }
-
-
-// TODO: 07.07.2023 1. DB 2.mappers mupstruct 3.repositories 4.exception handler 5.security 6.csrf

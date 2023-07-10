@@ -1,6 +1,7 @@
 package com.nails.nastya.nailsme.dto;
 
 import com.nails.nastya.nailsme.enumeration.TimeSlotState;
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.Instant;
@@ -9,9 +10,11 @@ import java.time.Instant;
 public class TimeSlotDto {
     private Integer id;
 
-    private Instant from;
+    private Instant workFrom;
 
-    private Instant to;
+    private Instant workTo;
+
+    private Integer masterId;
 
     private TimeSlotState timeSlotState;
 }
