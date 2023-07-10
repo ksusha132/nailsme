@@ -1,6 +1,5 @@
 package com.nails.nastya.nailsme.dto;
 
-import jakarta.persistence.ElementCollection;
 import lombok.Data;
 
 import java.util.List;

@@ -1,8 +1,6 @@
 package com.nails.nastya.nailsme.dto;
 
 import com.nails.nastya.nailsme.enumeration.AppointmentStatus;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.Data;
 
 @Data

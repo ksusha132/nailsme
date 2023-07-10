@@ -1,15 +1,12 @@
 package com.nails.nastya.nailsme.service;
 
-import com.nails.nastya.nailsme.web.response.TimeSlotResponse;
+import com.nails.nastya.nailsme.dto.TimeSlotDto;
 
 import java.time.Instant;
+import java.util.List;
 
 public interface TimeSlotService {
-    TimeSlotResponse getAllAvailableTimeSlots(Long masterId,
-                                              Instant from,
-                                              Instant to);
-
-    TimeSlotResponse getAllTimeSlots(Long masterId,
-                                     Instant from,
-                                     Instant to);
+    List<TimeSlotDto> getAllAvailableTimeSlots(Integer masterId,
+                                               Instant from,
+                                               Instant to);
 }
