@@ -76,6 +76,7 @@ create table time_slot
     id              integer                     not null,
     work_from       timestamp(6) with time zone not null,
     work_to         timestamp(6) with time zone not null,
+    master_id       integer                     not null,
     time_slot_state varchar(255) check (time_slot_state in ('BUSY', 'FREE')),
     primary key (id)
 );
