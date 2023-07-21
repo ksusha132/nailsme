@@ -62,4 +62,16 @@ public class AppointmentServiceImpl implements AppointmentService {
         log.info("Mapped appointmentDtos: {}", appointmentDtos);
         return appointmentDtos;
     }
+
+    @Override
+    public List<AppointmentDto> getAppointmentsByMaster(Integer masterId) {
+        List<Appointment> appointments = appointmentRepository.findAllByMasterId(masterId);
+        log.info("Found appointments: {}", appointments);
+        List<AppointmentDto> appointmentDtos = new ArrayList<>();
+        appointments.forEach(appointment -> appointmentDtos.add(
+                appointmentMapper.appointmentToAppointmentDto(appointment))
+        );
+        log.info("Mapped appointmentDtos: {}", appointmentDtos);
+        return appointmentDtos;
+    }
 }

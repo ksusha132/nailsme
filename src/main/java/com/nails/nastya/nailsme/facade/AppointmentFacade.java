@@ -70,4 +70,19 @@ public class AppointmentFacade {
         log.info("AppointmentsResponse : {}", appointmentsResponse);
         return appointmentsResponse;
     }
+
+    public AppointmentsResponse getAllAppointmentsByMasterId(Integer masterId) {
+        List<AppointmentDto> appointmentDtos = appointmentService.getAppointmentsByMaster(masterId);
+        log.info("Found  all appointments {} by masterId {}", appointmentDtos, masterId);
+
+        List<AppointmentResponse> appointmentResponses = new ArrayList<>();
+        appointmentDtos.forEach(appointmentDto -> appointmentResponses.add(
+                appointmentMapper.appointmentDtoToAppointmentResponse(appointmentDto))
+        ); //todo mapper list
+        AppointmentsResponse appointmentsResponse = new AppointmentsResponse();
+        appointmentsResponse.setAppointmentResponses(appointmentResponses);
+
+        log.info("AppointmentsResponse : {}", appointmentsResponse);
+        return appointmentsResponse;
+    }
 }

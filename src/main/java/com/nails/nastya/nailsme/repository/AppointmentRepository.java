@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
     List<Appointment> findAllByClientId(Integer clientId);
+
+    List<Appointment> findAllByMasterId(Integer masterId);
 }
 

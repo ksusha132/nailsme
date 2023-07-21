@@ -47,5 +47,10 @@ public class AppointmentController {
         return appointmentFacade.getAnAppointmentsByLogin(login);
     }
 
-    // get all appointments for admin
+
+    @Operation(summary = "Получение всех встреч мастера")
+    @GetMapping("/{masterId}")
+    public AppointmentsResponse getAllAppointment(@PathVariable Integer masterId) {
+        return appointmentFacade.getAllAppointmentsByMasterId(masterId);
+    }
 }
