@@ -4,13 +4,13 @@ import com.nails.nastya.nailsme.NailsmeApplication;
 import com.nails.nastya.nailsme.facade.AppointmentFacade;
 import com.nails.nastya.nailsme.web.request.AppointmentRequest;
 import com.nails.nastya.nailsme.web.response.AppointmentResponse;
+import com.nails.nastya.nailsme.web.response.AppointmentsResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -43,7 +43,9 @@ public class AppointmentController {
 
     @Operation(summary = "Получение встреч")
     @GetMapping("/{login}")
-    public AppointmentResponse getAppointment(@PathVariable String login) {
+    public AppointmentsResponse getAppointment(@PathVariable String login) {
         return appointmentFacade.getAnAppointmentsByLogin(login);
     }
+
+    // get all appointments for admin
 }

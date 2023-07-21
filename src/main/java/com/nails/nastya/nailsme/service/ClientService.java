@@ -15,4 +15,6 @@ public interface ClientService {
     ResetPasswordDto resetPassword(ResetPasswordDto resetPasswordDto);
 
     ClientDto getClientById(Integer id);
+
+    ClientDto getClientByLogin(String login);
 }
