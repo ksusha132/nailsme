@@ -11,5 +11,7 @@ public interface AppointmentService {
 
     void deleteAnAppointment(Integer appointmentId);
 
-    List<AppointmentDto> getAppointmentsByLogin(String login);
+    List<AppointmentDto> getAppointmentsByClient(Integer clientId);
+
+    List<AppointmentDto> getAppointmentsByMaster(Integer masterId);
 }
