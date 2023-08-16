@@ -21,13 +21,11 @@ public class AppointmentController {
 
     private final AppointmentFacade appointmentFacade;
 
-
     @Operation(summary = "Создание встречи")
     @PostMapping("/")
     public AppointmentResponse createAppointment(@RequestBody AppointmentRequest appointmentRequest) {
         return appointmentFacade.createAnAppointment(appointmentRequest);
     }
-
 
     @Operation(summary = "Обновление встречи")
     @PutMapping("/")
@@ -46,7 +44,6 @@ public class AppointmentController {
     public AppointmentsResponse getAppointment(@PathVariable String login) {
         return appointmentFacade.getAnAppointmentsByLogin(login);
     }
-
 
     @Operation(summary = "Получение всех встреч мастера")
     @GetMapping("/{masterId}")

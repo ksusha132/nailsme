@@ -63,7 +63,7 @@ public class AppointmentFacade {
         List<AppointmentResponse> appointmentResponses = new ArrayList<>();
         appointmentDtos.forEach(appointmentDto -> appointmentResponses.add(
                 appointmentMapper.appointmentDtoToAppointmentResponse(appointmentDto))
-        );
+        ); //todo mapper list
         AppointmentsResponse appointmentsResponse = new AppointmentsResponse();
         appointmentsResponse.setAppointmentResponses(appointmentResponses);
 

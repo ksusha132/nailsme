@@ -58,7 +58,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         List<AppointmentDto> appointmentDtos = new ArrayList<>();
         appointments.forEach(appointment -> appointmentDtos.add(
                 appointmentMapper.appointmentToAppointmentDto(appointment))
-        );
+        ); //todo mapper list
         log.info("Mapped appointmentDtos: {}", appointmentDtos);
         return appointmentDtos;
     }
@@ -70,7 +70,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         List<AppointmentDto> appointmentDtos = new ArrayList<>();
         appointments.forEach(appointment -> appointmentDtos.add(
                 appointmentMapper.appointmentToAppointmentDto(appointment))
-        );
+        ); //todo mapper list
         log.info("Mapped appointmentDtos: {}", appointmentDtos);
         return appointmentDtos;
     }
