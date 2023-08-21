@@ -43,9 +43,13 @@ public class AppointmentFacade {
     }
 
     public AppointmentResponse updateAnAppointment(AppointmentRequest request) {
-        // mapper
-        appointmentService.updateAnAppointment(null);
-        return null;
+        log.info("Update request came: {}", request);
+        AppointmentDto mappedAppointmentDto = appointmentMapper.appointmentRequestToAppointmentDto(request);
+        AppointmentDto updatedAppointment = appointmentService.updateAnAppointment(mappedAppointmentDto);
+        log.info("Updated appointment: {}", updatedAppointment);
+        AppointmentResponse response = appointmentMapper.appointmentDtoToAppointmentResponse(updatedAppointment);
+        log.info("Mapped appointment updated: {}", response);
+        return response;
     }
 
     public void deleteAnAppointment(Integer appointmentId) {
@@ -60,10 +64,9 @@ public class AppointmentFacade {
         List<AppointmentDto> appointmentDtos = appointmentService.getAppointmentsByClient(clientDto.getId());
         log.info("Found appointments {} by login {}", appointmentDtos, login);
 
-        List<AppointmentResponse> appointmentResponses = new ArrayList<>();
-        appointmentDtos.forEach(appointmentDto -> appointmentResponses.add(
-                appointmentMapper.appointmentDtoToAppointmentResponse(appointmentDto))
-        ); //todo mapper list
+        List<AppointmentResponse> appointmentResponses = appointmentMapper
+                .appointmentDtoToAppointmentResponseList(appointmentDtos);
+
         AppointmentsResponse appointmentsResponse = new AppointmentsResponse();
         appointmentsResponse.setAppointmentResponses(appointmentResponses);
 
@@ -75,10 +78,9 @@ public class AppointmentFacade {
         List<AppointmentDto> appointmentDtos = appointmentService.getAppointmentsByMaster(masterId);
         log.info("Found  all appointments {} by masterId {}", appointmentDtos, masterId);
 
-        List<AppointmentResponse> appointmentResponses = new ArrayList<>();
-        appointmentDtos.forEach(appointmentDto -> appointmentResponses.add(
-                appointmentMapper.appointmentDtoToAppointmentResponse(appointmentDto))
-        ); //todo mapper list
+        List<AppointmentResponse> appointmentResponses = appointmentMapper
+                .appointmentDtoToAppointmentResponseList(appointmentDtos);
+
         AppointmentsResponse appointmentsResponse = new AppointmentsResponse();
         appointmentsResponse.setAppointmentResponses(appointmentResponses);
 

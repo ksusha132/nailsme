@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class AppointmentRequest {
+    private Integer id;
     private Integer clientId; // whom
     private Integer masterId; // who
     private Integer serviceId; // what

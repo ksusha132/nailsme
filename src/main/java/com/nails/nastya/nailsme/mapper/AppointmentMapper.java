@@ -8,9 +8,16 @@ import com.nails.nastya.nailsme.web.response.AppointmentsResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring",
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface AppointmentMapper {
+
+    List<AppointmentResponse> appointmentDtoToAppointmentResponseList(List<AppointmentDto> appointmentDtos);
+
+    List<AppointmentDto> appointmentsToAppointmentsDtoList(List<Appointment> appointments);
+
     AppointmentDto appointmentRequestToAppointmentDto(AppointmentRequest appointmentRequest);
 
     AppointmentResponse appointmentDtoToAppointmentResponse(AppointmentDto appointmentDto);

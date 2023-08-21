@@ -34,13 +34,24 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointment.setStatus(AppointmentStatus.RESERVED);
         Appointment saved = appointmentRepository.saveAndFlush(appointment);
         log.info("Saved appointment: {}", saved);
-        AppointmentDto appointmentDtoSaved = appointmentMapper.appointmentToAppointmentDto(appointment);
-        return appointmentDtoSaved;
+        return appointmentMapper.appointmentToAppointmentDto(saved);
     }
 
     @Override
     public AppointmentDto updateAnAppointment(AppointmentDto appointmentDto) {
-        return null;
+        Integer appointmentId = appointmentDto.getId();
+        log.info("Starting to update appointment id: {}", appointmentId);
+
+        if (!appointmentRepository.existsById(appointmentId)) {
+            log.error("Not found by id: {}, clientId {}", appointmentId, appointmentDto.getClientId());
+            throw new AppointmentException("Not found appointment with this id: " + appointmentId);
+        }
+
+        Appointment mappedAppointment = appointmentMapper.appointmentDtoToAppointment(appointmentDto);
+        log.info("Mapped appointment: {}", mappedAppointment);
+        Appointment saved = appointmentRepository.saveAndFlush(mappedAppointment);
+        log.info("Saved appointment: {}", saved);
+        return appointmentMapper.appointmentToAppointmentDto(saved);
     }
 
     @Override
@@ -55,10 +66,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     public List<AppointmentDto> getAppointmentsByClient(Integer clientId) {
         List<Appointment> appointments = appointmentRepository.findAllByClientId(clientId);
         log.info("Found appointments: {}", appointments);
-        List<AppointmentDto> appointmentDtos = new ArrayList<>();
-        appointments.forEach(appointment -> appointmentDtos.add(
-                appointmentMapper.appointmentToAppointmentDto(appointment))
-        ); //todo mapper list
+        List<AppointmentDto> appointmentDtos = appointmentMapper.appointmentsToAppointmentsDtoList(appointments);
         log.info("Mapped appointmentDtos: {}", appointmentDtos);
         return appointmentDtos;
     }
@@ -67,10 +75,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     public List<AppointmentDto> getAppointmentsByMaster(Integer masterId) {
         List<Appointment> appointments = appointmentRepository.findAllByMasterId(masterId);
         log.info("Found appointments: {}", appointments);
-        List<AppointmentDto> appointmentDtos = new ArrayList<>();
-        appointments.forEach(appointment -> appointmentDtos.add(
-                appointmentMapper.appointmentToAppointmentDto(appointment))
-        ); //todo mapper list
+        List<AppointmentDto> appointmentDtos = appointmentMapper.appointmentsToAppointmentsDtoList(appointments);
         log.info("Mapped appointmentDtos: {}", appointmentDtos);
         return appointmentDtos;
     }
