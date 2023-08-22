@@ -36,4 +36,9 @@ public class ClientServiceImpl implements ClientService {
     public ClientDto getClientById(Integer id) {
         return null;
     }
+
+    @Override
+    public ClientDto getClientByLogin(String login) {
+        return null;
+    }
 }

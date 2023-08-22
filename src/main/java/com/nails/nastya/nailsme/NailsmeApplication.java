@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 @EnableJpaRepositories(value = "com.nails.nastya.nailsme")
-@EntityScan(value = "ru.sravni.mpl.request.sender")
+@EntityScan(value = "com.nails.nastya.nailsme")
 public class NailsmeApplication {
 
     public static final String VERSION_URL = "/api/v1";

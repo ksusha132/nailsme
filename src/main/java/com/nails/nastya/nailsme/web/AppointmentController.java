@@ -4,13 +4,13 @@ import com.nails.nastya.nailsme.NailsmeApplication;
 import com.nails.nastya.nailsme.facade.AppointmentFacade;
 import com.nails.nastya.nailsme.web.request.AppointmentRequest;
 import com.nails.nastya.nailsme.web.response.AppointmentResponse;
+import com.nails.nastya.nailsme.web.response.AppointmentsResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -21,13 +21,11 @@ public class AppointmentController {
 
     private final AppointmentFacade appointmentFacade;
 
-
     @Operation(summary = "Создание встречи")
     @PostMapping("/")
     public AppointmentResponse createAppointment(@RequestBody AppointmentRequest appointmentRequest) {
         return appointmentFacade.createAnAppointment(appointmentRequest);
     }
-
 
     @Operation(summary = "Обновление встречи")
     @PutMapping("/")
@@ -43,7 +41,13 @@ public class AppointmentController {
 
     @Operation(summary = "Получение встреч")
     @GetMapping("/{login}")
-    public AppointmentResponse getAppointment(@PathVariable String login) {
+    public AppointmentsResponse getAppointment(@PathVariable String login) {
         return appointmentFacade.getAnAppointmentsByLogin(login);
+    }
+
+    @Operation(summary = "Получение всех встреч мастера")
+    @GetMapping("/{masterId}")
+    public AppointmentsResponse getAllAppointment(@PathVariable Integer masterId) {
+        return appointmentFacade.getAllAppointmentsByMasterId(masterId);
     }
 }
