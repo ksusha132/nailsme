@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(NailsmeApplication.VERSION_URL + "/client")
 @RequiredArgsConstructor
-@Tag(name = "Клиент", description = "Работа с клиантами")
+@Tag(name = "Клиент", description = "Работа с клиентами")
 public class ClientController {
 
     private final ClientFacade clientFacade;
