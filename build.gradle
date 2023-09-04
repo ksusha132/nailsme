@@ -35,7 +35,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.telegram:telegrambots:6.1.0'
     implementation 'org.json:json:20230227'
-    implementation "org.springdoc:springdoc-openapi-ui:1.6.6"
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
     implementation "org.mapstruct:mapstruct:$mapStructVersion"
     annotationProcessor "org.mapstruct:mapstruct-processor:$mapStructVersion"
     compileOnly 'org.projectlombok:lombok'
