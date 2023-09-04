@@ -4,6 +4,7 @@ import com.nails.nastya.nailsme.dto.AppointmentDto;
 import com.nails.nastya.nailsme.persistance.Appointment;
 import com.nails.nastya.nailsme.web.request.AppointmentRequest;
 import com.nails.nastya.nailsme.web.response.AppointmentResponse;
+import com.nails.nastya.nailsme.web.response.AppointmentsResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
@@ -13,15 +14,15 @@ import java.util.List;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface AppointmentMapper {
 
-    AppointmentDto entityToDto(Appointment entity);
+    List<AppointmentResponse> appointmentDtoToAppointmentResponseList(List<AppointmentDto> appointmentDtos);
 
-    Appointment dtoToEntity(AppointmentDto dto);
+    List<AppointmentDto> appointmentsToAppointmentsDtoList(List<Appointment> appointments);
 
-    List<AppointmentDto> entityListToDtoList(List<Appointment> entities);
+    AppointmentDto appointmentRequestToAppointmentDto(AppointmentRequest appointmentRequest);
 
-    List<Appointment> dtoListToEntityList(List<AppointmentDto> dtos);
+    AppointmentResponse appointmentDtoToAppointmentResponse(AppointmentDto appointmentDto);
 
-    AppointmentDto requestToAppointmentDto(AppointmentRequest request);
+    Appointment appointmentDtoToAppointment(AppointmentDto appointmentDto);
 
-    AppointmentResponse appointmentDtoToResponse(AppointmentDto dto);
+    AppointmentDto appointmentToAppointmentDto(Appointment appointment);
 }
