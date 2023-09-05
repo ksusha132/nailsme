@@ -12,13 +12,13 @@ import java.util.List;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ContactMapper {
 
-    MasterContactsResponse dtoToMasterContactsResponse(ContactDto dto);
+    MasterContactsResponse contactDtoToMasterContactsResponse(ContactDto dto);
 
-    ContactDto entityToDto(Contact entity);
+    ContactDto contactToContactDto(Contact entity);
 
-    Contact dtoToEntity(ContactDto dto);
+    Contact contactDtoToContact(ContactDto dto);
 
-    List<ContactDto> entityListToDtoList(List<Contact> entities);
+    List<ContactDto> contactToContactDtoList(List<Contact> entities);
 
-    List<Contact> dtoListToEntityList(List<ContactDto> dtos);
+    List<Contact> contactDtoToContactList(List<ContactDto> dtos);
 }

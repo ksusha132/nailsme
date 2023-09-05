@@ -11,11 +11,11 @@ import java.util.List;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface MasterMapper {
 
-    MasterDto entityToDto(Master entity);
+    MasterDto masterToMasterDto(Master entity);
 
-    Master dtoToEntity(MasterDto dto);
+    Master masterDtoToMaster(MasterDto dto);
 
-    List<MasterDto> entityListToDtoList(List<Master> entities);
+    List<MasterDto> masterToMasterDtoList(List<Master> entities);
 
-    List<Master> dtoListToEntityList(List<MasterDto> dtos);
+    List<Master> masterDtoToMasterList(List<MasterDto> dtos);
 }

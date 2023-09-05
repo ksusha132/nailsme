@@ -17,11 +17,11 @@ public interface ClientMapper {
 
     RegisterNewClientResponse clientDtoToRegisterNewClientResponse(ClientDto dto);
 
-    ClientDto entityToDto(Client entity);
+    ClientDto clientToClientDto(Client entity);
 
-    Client dtoToEntity(ClientDto dto);
+    Client clientDtoToClient(ClientDto dto);
 
-    List<ClientDto> entityListToDtoList(List<Client> entities);
+    List<ClientDto> clientToClientDtoList(List<Client> entities);
 
-    List<Client> dtoListToEntityList(List<ClientDto> dtos);
+    List<Client> ClientDtoToClientList(List<ClientDto> dtos);
 }

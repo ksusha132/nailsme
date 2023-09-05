@@ -11,11 +11,11 @@ import java.util.List;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ScheduleMapper {
 
-    ScheduleDto entityToDto(Schedule entity);
+    ScheduleDto scheduleToScheduleDto(Schedule entity);
 
-    Schedule dtoToEntity(ScheduleDto dto);
+    Schedule scheduleDtoToSchedule(ScheduleDto dto);
 
-    List<ScheduleDto> entityListToDtoList(List<Schedule> entities);
+    List<ScheduleDto> scheduleToScheduleDtoList(List<Schedule> entities);
 
-    List<Schedule> dtoListToEntityList(List<ScheduleDto> dtos);
+    List<Schedule> scheduleDtoToScheduleList(List<ScheduleDto> dtos);
 }

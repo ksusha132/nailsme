@@ -26,6 +26,6 @@ public class Client {
     private String phone; // 79117714269
     @Column(name = "date_birth", nullable = false)
     private Instant dateBirth;
-    @Enumerated(EnumType.STRING)
-    private ClientStatus status;
+    @Column(name = "status_id", nullable = false)
+    private Integer statusId;
 }

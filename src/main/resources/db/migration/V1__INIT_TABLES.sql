@@ -13,22 +13,30 @@ create table appointment
 create table client
 (
     id            integer                     not null,
+    status_id     integer                     not null,
     date_birth    timestamp(6) with time zone not null,
     name          varchar(255)                not null,
     phone         varchar(255)                not null,
-    status        varchar(255) check (status in ('NEW', 'OLD')),
     telegram_nick varchar(255)                not null,
+    primary key (id)
+);
+
+create table client_status
+(
+    id      integer        not null,
+    percent numeric(38, 2) not null,
+    name    varchar(255)   not null,
     primary key (id)
 );
 
 create table contact
 (
-    id              integer      not null,
-    insta_link      varchar(255) not null,
-    telegram_nick   varchar(255) not null,
-    viber_link      varchar(255) not null,
-    watsupp_link    varchar(255) not null,
-    work_insta_link varchar(255) not null,
+    id              integer not null,
+    insta_link      varchar(255),
+    telegram_nick   varchar(255),
+    viber_link      varchar(255),
+    whats_app_link  varchar(255),
+    work_insta_link varchar(255),
     primary key (id)
 );
 
@@ -44,6 +52,15 @@ create table master_specialities
 (
     master_id    integer not null,
     specialities varchar(255)
+);
+
+create table price_menu
+(
+    id         integer        not null,
+    master_id  integer        not null,
+    price      numeric(38, 2) not null,
+    service_id integer        not null,
+    primary key (id)
 );
 
 create table schedule
@@ -64,19 +81,25 @@ create table schedule_booked_slots
 
 create table service
 (
-    id           integer        not null,
-    master_id    integer        not null,
-    price        numeric(38, 2) not null,
-    service_name varchar(255) check (service_name in ('MANICURE', 'PEDICURE', 'NAILS_CURE')),
+    group_id integer,
+    id       integer not null,
+    name     varchar(255),
+    primary key (id)
+);
+
+create table service_group
+(
+    id   integer not null,
+    name varchar(255),
     primary key (id)
 );
 
 create table time_slot
 (
     id              integer                     not null,
+    master_id       integer                     not null,
     work_from       timestamp(6) with time zone not null,
     work_to         timestamp(6) with time zone not null,
-    master_id       integer                     not null,
     time_slot_state varchar(255) check (time_slot_state in ('BUSY', 'FREE')),
     primary key (id)
 );
@@ -90,3 +113,19 @@ alter table schedule_booked_slots
     add constraint fk_schedule_booked_slots_schedule_id
         foreign key (schedule_id)
             references schedule;
+
+ALTER TABLE public.service_group
+    ADD CONSTRAINT service_group_uniq UNIQUE ("name");
+
+ALTER TABLE public.service
+    ADD CONSTRAINT service_uniq UNIQUE (group_id, "name");
+
+ALTER TABLE public.client_status
+    ADD CONSTRAINT client_status_uniq UNIQUE ("name");
+
+ALTER TABLE public.contact
+    ADD CONSTRAINT contact_check CHECK ("insta_link" is not null
+        or "work_insta_link" is not null
+        or "telegram_nick" is not null
+        or "viber_link" is not null
+        or "whats_app_link" is not null);
