@@ -6,17 +6,23 @@ import com.nails.nastya.nailsme.service.ServiceService;
 import com.nails.nastya.nailsme.web.response.AddressResponse;
 import com.nails.nastya.nailsme.web.response.MasterContactsResponse;
 import com.nails.nastya.nailsme.web.response.MasterServiceResponse;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-@RequiredArgsConstructor
 public class InfoFacade {
     private final ClientService clientService;
     private final ServiceService serviceService;
     private final ClientMapper clientMapper;
+
+    public InfoFacade(ClientService clientService,
+                      ServiceService serviceService,
+                      ClientMapper clientMapper) {
+        this.clientService = clientService;
+        this.serviceService = serviceService;
+        this.clientMapper = clientMapper;
+    }
 
     public MasterContactsResponse getMasterContacts(Long masterId) {
         return null;
