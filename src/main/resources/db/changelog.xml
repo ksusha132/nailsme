@@ -10,5 +10,8 @@
     <changeSet id="1" author="Grebennikov" logicalFilePath="V1__INIT_TABLES.sql">
         <createProcedure path="migration/V1__INIT_TABLES.sql" relativeToChangelogFile="true"/>
     </changeSet>
+    <changeSet id="2" author="Grebennikov" logicalFilePath="V2__FILL_INFO.sql">
+        <createProcedure path="migration/V2__FILL_INFO.sql" relativeToChangelogFile="true"/>
+    </changeSet>
 
 </databaseChangeLog>

@@ -15,14 +15,14 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
     private Integer id;
-    @Column(name = "insta_link", nullable = false)
+    @Column(name = "insta_link", nullable = true)
     private String instaLink;
-    @Column(name = "work_insta_link", nullable = false)
+    @Column(name = "work_insta_link", nullable = true)
     private String workInstaLink;
-    @Column(name = "telegram_nick", nullable = false)
+    @Column(name = "telegram_nick", nullable = true)
     private String telegramNick;
-    @Column(name = "viber_link", nullable = false)
+    @Column(name = "viber_link", nullable = true)
     private String viberLink;
-    @Column(name = "watsupp_link", nullable = false)
-    private String watsuppLink;
+    @Column(name = "whats_app_link", nullable = true)
+    private String whatsAppLink;
 }

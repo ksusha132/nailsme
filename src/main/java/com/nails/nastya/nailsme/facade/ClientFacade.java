@@ -1,10 +1,15 @@
 package com.nails.nastya.nailsme.facade;
 
+import com.nails.nastya.nailsme.mapper.ClientMapper;
+import com.nails.nastya.nailsme.mapper.ServiceMapper;
 import com.nails.nastya.nailsme.service.ClientService;
 import com.nails.nastya.nailsme.web.request.LoginRequest;
 import com.nails.nastya.nailsme.web.request.RegisterClientRequest;
 import com.nails.nastya.nailsme.web.request.ResetPasswordRequest;
-import com.nails.nastya.nailsme.web.response.*;
+import com.nails.nastya.nailsme.web.response.ConfirmNewClientResponse;
+import com.nails.nastya.nailsme.web.response.LoginResponse;
+import com.nails.nastya.nailsme.web.response.RegisterNewClientResponse;
+import com.nails.nastya.nailsme.web.response.ResetPasswordResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +17,17 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class ClientFacade {
-    private final ClientService clientService;
 
-    public ClientFacade(ClientService clientService) {
+    private final ClientService clientService;
+    private final ClientMapper clientMapper;
+    private final ServiceMapper serviceMapper;
+
+    public ClientFacade(ClientService clientService,
+                        ClientMapper clientMapper,
+                        ServiceMapper serviceMapper) {
         this.clientService = clientService;
+        this.clientMapper = clientMapper;
+        this.serviceMapper = serviceMapper;
     }
 
     public RegisterNewClientResponse registerNewClient(RegisterClientRequest registerClientRequest) {

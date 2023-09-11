@@ -3,6 +3,7 @@ package com.nails.nastya.nailsme.facade;
 import com.nails.nastya.nailsme.dto.AppointmentDto;
 import com.nails.nastya.nailsme.dto.ClientDto;
 import com.nails.nastya.nailsme.mapper.AppointmentMapper;
+import com.nails.nastya.nailsme.dto.AppointmentDto;
 import com.nails.nastya.nailsme.service.AppointmentService;
 import com.nails.nastya.nailsme.service.ClientService;
 import com.nails.nastya.nailsme.web.request.AppointmentRequest;

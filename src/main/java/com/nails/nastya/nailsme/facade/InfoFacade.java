@@ -1,5 +1,6 @@
 package com.nails.nastya.nailsme.facade;
 
+import com.nails.nastya.nailsme.mapper.ClientMapper;
 import com.nails.nastya.nailsme.service.ClientService;
 import com.nails.nastya.nailsme.service.ServiceService;
 import com.nails.nastya.nailsme.web.response.AddressResponse;
@@ -13,11 +14,14 @@ import org.springframework.stereotype.Component;
 public class InfoFacade {
     private final ClientService clientService;
     private final ServiceService serviceService;
+    private final ClientMapper clientMapper;
 
     public InfoFacade(ClientService clientService,
-                      ServiceService serviceServic) {
+                      ServiceService serviceService,
+                      ClientMapper clientMapper) {
         this.clientService = clientService;
-        this.serviceService = serviceServic;
+        this.serviceService = serviceService;
+        this.clientMapper = clientMapper;
     }
 
     public MasterContactsResponse getMasterContacts(Long masterId) {
