@@ -14,6 +14,7 @@ create table client
 (
     id            integer                     not null,
     status_id     integer                     not null,
+    chat_id       integer                     not null,
     date_birth    timestamp(6) with time zone not null,
     name          varchar(255)                not null,
     phone         varchar(255)                not null,
@@ -102,6 +103,32 @@ create table time_slot
     work_to         timestamp(6) with time zone not null,
     time_slot_state varchar(255) check (time_slot_state in ('BUSY', 'FREE')),
     primary key (id)
+);
+
+CREATE TABLE public.user_order
+(
+    user_order_id int4 NOT NULL,
+    client_id     int4 NULL,
+    chat_id       int8 NOT NULL,
+    order_name    varchar(255) NULL,
+    create_at     timestamptz(6) NOT NULL,
+    update_at     timestamptz(6) NOT NULL,
+    completed     bool NOT NULL default false,
+    CONSTRAINT user_order_pkey PRIMARY KEY (user_order_id)
+);
+
+CREATE TABLE public.user_order_detail
+(
+    client_id            int4 NULL,
+    prior_state_id       int4 NULL,
+    user_order_detail_id int4 NOT NULL,
+    create_at            timestamptz(6) NOT NULL,
+    user_order_id        int4 NOT NULL,
+    state                varchar(255) NULL,
+    value_field          varchar(255) NULL,
+    CONSTRAINT user_order_detail_pkey PRIMARY KEY (user_order_detail_id),
+    CONSTRAINT user_order_detail_order_id_state_uq UNIQUE (user_order_id, state),
+    CONSTRAINT fk_user_order_id FOREIGN KEY (user_order_id) REFERENCES public.user_order (user_order_id)
 );
 
 alter table master_specialities
