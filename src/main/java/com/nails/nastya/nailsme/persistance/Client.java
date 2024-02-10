@@ -22,6 +22,8 @@ public class Client {
     private String name;
     @Column(name = "telegram_nick", nullable = false)
     private String telegramNick;
+    @Column(name = "chat_id", nullable = true)
+    private Integer chatId;
     @Column(name = "phone", nullable = false)
     private String phone; // 79117714269
     @Column(name = "date_birth", nullable = false)
